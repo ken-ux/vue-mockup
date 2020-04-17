@@ -5,7 +5,7 @@
         <title>Vue.js Project</title>
         <meta name="author" content="Kenny Nguyen">
         <meta name="description" content="introductory vue.js project">
-        <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
@@ -13,41 +13,13 @@
         <div class="nav-bar"></div>
 
         <div id="app">
-            <div class="product">
-
-                <div class="product-image">
-                    <img v-bind:src="image">
-                </div>
-
-                <div class="product-info">
-                    <h1>{{ product }}</h1>
-
-                    <p v-if="onSale">On Sale!</p>
-
-                    <p v-show="inStock">In Stock</p>
-
-                    <ul>
-                        <!-- Loops over every element in 'details' array with 'detail' iterator -->
-                        <li v-for="detail in details">{{ detail }}</li>
-                    </ul>
-
-                    <p>{{ description }}</p>
-
-                    <div v-for="variant in variants" :key="variant.variantId">
-                        <p>{{ variant.variantColor }}</p>
-                    </div>
-
-                    <!-- Example of event handling using v-on with an event handler "click" -->
-                    <button v-on:click="addToCart">Add to Cart</button>
-
-                    <div class="cart">
-                        <p>Cart({{cart}})</p>
-                    </div>
-
-                    <p><a v-bind:href="url">More about the froggy furniture set from Nintendo's <em>Animal Crossing</em></em></a></p>
-                </div>
-
+            <div class="cart">
+                <p>Cart({{ cart.length }})</p>
             </div>
+            <product :premium="premium"
+                     @add-to-cart="updateCart"
+                     @remove-from-cart="takeFromCart">
+            </product>
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
